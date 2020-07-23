@@ -1,0 +1,87 @@
+<!-- Slide Menu-->
+<aside
+  class="weather-slide-menu"
+  [ngClass]="{ 'weather-slide-menu--active': isShowMenu }"
+  (click)="toggleMenu()"
+>
+  <nav
+    class="weather-slide-menu__content"
+    [ngClass]="{ 'weather-slide-menu__content--active': isShowMenu }"
+    (click)="$event.stopImmediatePropagation()"
+  >
+    <section class="weather-slide-menu__content__header">
+      <span class="weather-slide-menu__content__header--title">{{
+        title
+      }}</span>
+      <div class="weather-slide-menu__content__header__profile">
+        <img
+          src="../assets/person_1.jpg"
+          alt="profile-image"
+          class="weather-slide-menu__content__header__profile--img"
+        />
+      </div>
+      <div class="weather-slide-menu__content__header__account-details">
+        <span class="weather-slide-menu__content__header__account-details--name"
+          >Jan Kowalski</span
+        >
+        <span
+          class="weather-slide-menu__content__header__account-details--email"
+          >jkowalski@gmail.com</span
+        >
+      </div>
+    </section>
+    <section class="weather-slide-menu__content__body"></section>
+    <section class="weather-slide-menu__content__footer"></section>
+  </nav>
+</aside>
+
+<div class="weather-container">
+  <header class="weather-container__header">
+    <div class="weather-container__header__menu">
+      <ng-container *ngIf="isShowMenu; else elseTemplate">
+        <div
+          (click)="toggleMenu()"
+          class="weather-container__header__menu--icon"
+        >
+          <fa-icon [icon]="timesIcon"> </fa-icon>
+        </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <div
+          (click)="toggleMenu()"
+          class="weather-container__header__menu--icon"
+        >
+          <fa-icon [icon]="hamburgerMenuIcon"> </fa-icon>
+        </div>
+      </ng-template>
+    </div>
+
+    <h3 class="weather-container__header--date-text">
+      <fa-icon [icon]="rainbowIcon"></fa-icon>
+      Today
+    </h3>
+
+    <div class="weather-container__header__toggle">
+      <span class="weather-container__header__toggle--title">Light</span>
+
+      <label class="weather-container__header__toggle__label">
+        <input
+          type="checkbox"
+          class="weather-container__header__toggle__label--input"
+        />
+        <span
+          class="weather-container__header__toggle__label--background"
+        ></span>
+        <span class="weather-container__header__toggle__label--circle"></span>
+      </label>
+
+      <span class="weather-container__header__toggle--title">Dark</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+
+  <main class="weather-container__content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

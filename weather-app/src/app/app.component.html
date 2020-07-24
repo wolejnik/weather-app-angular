@@ -1,4 +1,3 @@
-<!-- Slide Menu-->
 <aside
   class="weather-slide-menu"
   [ngClass]="{ 'weather-slide-menu--active': isShowMenu }"
@@ -36,7 +35,10 @@
 </aside>
 
 <div class="weather-container">
-  <header class="weather-container__header">
+  <header
+    [ngClass]="{ 'weather-container__header--dark': isDarkMode }"
+    class="weather-container__header"
+  >
     <div class="weather-container__header__menu">
       <ng-container *ngIf="isShowMenu; else elseTemplate">
         <div
@@ -56,32 +58,25 @@
       </ng-template>
     </div>
 
-    <h3 class="weather-container__header--date-text">
-      <fa-icon [icon]="rainbowIcon"></fa-icon>
-      Today
-    </h3>
+    <h3 class="weather-container__header--date-text">Today</h3>
 
-    <div class="weather-container__header__toggle">
-      <span class="weather-container__header__toggle--title">Light</span>
+    <label class="weather-container__header__toggle">
+      <span class="weather-container__header__toggle--label">Light</span>
 
-      <label class="weather-container__header__toggle__label">
-        <input
-          type="checkbox"
-          class="weather-container__header__toggle__label--input"
-        />
-        <span
-          class="weather-container__header__toggle__label--background"
-        ></span>
-        <span class="weather-container__header__toggle__label--circle"></span>
-      </label>
-
-      <span class="weather-container__header__toggle--title">Dark</span>
-    </div>
+      <input
+        class="weather-container__header__toggle--checkbox"
+        type="checkbox"
+        (click)="modeToggleSwitch()"
+      />
+      <div class="weather-container__header__toggle__switch"></div>
+      <span class="weather-container__header__toggle--label">Dark</span>
+    </label>
   </header>
 
-  <!-- Main Content -->
-
-  <main class="weather-container__content">
+  <main
+    class="weather-container__main"
+    [ngClass]="{ 'weather-container__main--dark': isDarkMode }"
+  >
     <router-outlet></router-outlet>
   </main>
 </div>
